@@ -1,0 +1,20 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:mxskintool.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="mxskintool.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="mxskintool">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
+        <TextBlock Name="AssetPathTextBlock" Text="{Binding AssetPath}"></TextBlock>
+        <Button Name="GetAssetPathButton" Content="Browse" Click="OnGetAssetPathButtonWasPressed"></Button>
+    </StackPanel>
+    
+</Window>
