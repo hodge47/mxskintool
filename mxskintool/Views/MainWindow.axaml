@@ -3,18 +3,80 @@
         xmlns:vm="using:mxskintool.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="800"
         x:Class="mxskintool.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="mxskintool">
+        Title="mxskintool"
+        Width="640"
+        Height="800"
+        TransparencyLevelHint="AcrylicBlur"
+        Background="Transparent"
+        ExtendClientAreaToDecorationsHint="True"
+        >
 
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
-        <TextBlock Name="AssetPathTextBlock" Text="{Binding AssetPath}"></TextBlock>
-        <Button Name="GetAssetPathButton" Content="Browse" Click="OnGetAssetPathButtonWasPressed"></Button>
-    </StackPanel>
-    
+    <Panel>
+        <ExperimentalAcrylicBorder IsHitTestVisible="False">
+            <ExperimentalAcrylicBorder.Material>
+                <ExperimentalAcrylicMaterial
+                    BackgroundSource="Digger"
+                    TintColor="Black"
+                    TintOpacity="1"
+                    MaterialOpacity="0.6" />
+            </ExperimentalAcrylicBorder.Material>
+        </ExperimentalAcrylicBorder>
+        <StackPanel Name="StackPanelContainer" Orientation="Horizontal">
+            <StackPanel Name="LeftPanel" Width="320" Margin="20 20 0 20">
+                <!-- Asset Directory - For choosing which directory the source assets are in -->
+                <StackPanel Name="AssetDirectoryStackPanel" Orientation="Vertical" Margin="20" Grid.Row="0" Grid.Column="0">
+                    <TextBlock Name="AssetDirectoryTitle" Text="Asset Directory" FontSize="18" FontWeight="Black" FontFamily="Roboto" Margin="0 10"></TextBlock>
+                    <TextBlock Name="AssetPathTextBlock" Text="{Binding AssetPath}" FontWeight="Normal" FontFamily="Roboto" Margin="0 5"></TextBlock>
+                    <Button Name="GetAssetPathButton" Content="Browse" Click="OnGetAssetPathButtonWasPressed" Width="200" Margin="0 5"></Button>
+                </StackPanel>
+                <!-- Model name - For naming the model and files -->
+                <StackPanel Name="ModelStackPanel" Orientation="Vertical" Margin="20" Grid.Row="1" Grid.Column="0">
+                    <TextBlock Text="Model" FontSize="18" FontWeight="Black" FontFamily="Roboto" Margin="0 5"></TextBlock>
+                    <TextBox Name="ModelTextBox" HorizontalAlignment="Left" Watermark="Model name" Width="200" Margin="0 5"></TextBox>
+                </StackPanel>
+                <!-- Rename options -->
+                <StackPanel Name="RenameStackPanel" Orientation="Vertical" Margin="20" Grid.Row="2" Grid.Column="0">
+                    <TextBlock Text="Rename" FontSize="18" FontWeight="Black" FontFamily="Roboto" Margin="0 5"></TextBlock>
+                    <Button Name="RenameAllButton" Content="Rename All" Width="200" Height="40" Margin="0 5"></Button>
+                    <Button Name="RenameMapsButton" Content="Rename Maps" Width="200" Height="40" Margin="0 5"></Button>
+                    <Button Name="RenameJmButton" Content="Rename JMs" Width="200" Height="40" Margin="0 5"></Button>
+                </StackPanel>
+                <!-- Scram options -->
+                <StackPanel Name="ScramStackPanel" Orientation="Vertical" Margin="20" Grid.Row="3" Grid.Column="0">
+                    <TextBlock Text="Scram" FontSize="18" FontWeight="Black" FontFamily="Roboto" Margin="0 5"></TextBlock>
+                    <Button Name="ScramAllButton" Content="Rename All" Width="200" Height="40" Margin="0 5"></Button>
+                    <Button Name="ScramMapsButton" Content="Rename Maps" Width="200" Height="40" Margin="0 5"></Button>
+                    <Button Name="ScramJmButton" Content="Rename JMs" Width="200" Height="40" Margin="0 5"></Button>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Name="RightPanel" Width="320" Margin="0 20 20 20">
+                <StackPanel Name="MapsStackPanel" Orientation="Vertical" Margin="20 20 20 0" Grid.Row="0" Grid.Column="1">
+                    <TextBlock Name="MapsTitle" Text="Skins and Maps" FontSize="18" FontWeight="Black" FontFamily="Roboto" Margin="0 10"></TextBlock>
+                    <ListBox Name="MapsListBox" Height="100" Margin="0 0 20 0"></ListBox>
+                </StackPanel>
+                <StackPanel Name="JMsStackPanel" Orientation="Vertical" Margin="20 5" Grid.Row="0" Grid.Column="1">
+                    <TextBlock Name="JMsTitle" Text="JMs" FontSize="18" FontWeight="Black" FontFamily="Roboto" Margin="0 10"></TextBlock>
+                    <ListBox Name="JMsListBox" Height="100" Margin="0 0 20 0"></ListBox>
+                </StackPanel>
+                <StackPanel Name="DynoStackPanel" Orientation="Vertical" Margin="20 5" Grid.Row="0" Grid.Column="1">
+                    <TextBlock Name="DynoTitle" Text="Dyno" FontSize="18" FontWeight="Black" FontFamily="Roboto" Margin="0 10"></TextBlock>
+                    <ListBox Name="DynoListBox" Height="100" Margin="0 0 20 0"></ListBox>
+                </StackPanel>
+                <StackPanel Name="SafStackPanel" Orientation="Vertical" Margin="20 40 20 20" Grid.Row="3" Grid.Column="0">
+                    <TextBlock Text="Scram" FontSize="18" FontWeight="Black" FontFamily="Roboto" Margin="0 5"></TextBlock>
+                    <Button Name="SafAllButton" Content="Saf All" Width="200" Height="40" Margin="0 5"></Button>
+                    <Button Name="SafMapsButton" Content="Saf Maps" Width="200" Height="40" Margin="0 5"></Button>
+                    <Button Name="SafJmButton" Content="Saf JMs" Width="200" Height="40" Margin="0 5"></Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <TextBlock Text="Ready..."  FontFamily="Roboto" FontWeight="Light" VerticalAlignment="Bottom" Margin="40"></TextBlock>
+    </Panel>
 </Window>
