@@ -33,7 +33,7 @@
                 <!-- Asset Directory - For choosing which directory the source assets are in -->
                 <StackPanel Name="AssetDirectoryStackPanel" Orientation="Vertical" Margin="20" Grid.Row="0" Grid.Column="0">
                     <TextBlock Name="AssetDirectoryTitle" Text="Asset Directory" FontSize="18" FontWeight="Black" FontFamily="Roboto" Margin="0 10"></TextBlock>
-                    <TextBlock Name="AssetPathTextBlock" Text="{Binding AssetPath}" FontWeight="Normal" FontFamily="Roboto" Margin="0 5"></TextBlock>
+                    <TextBlock Name="AssetPathTextBlock" Text="{Binding AssetPath}" FontSize="8" FontWeight="Normal" FontFamily="Roboto" Margin="0 5"></TextBlock>
                     <Button Name="GetAssetPathButton" Content="Browse" Click="OnGetAssetPathButtonWasPressed" Width="200" Margin="0 5"></Button>
                 </StackPanel>
                 <!-- Model name - For naming the model and files -->
@@ -44,7 +44,7 @@
                 <!-- Rename options -->
                 <StackPanel Name="RenameStackPanel" Orientation="Vertical" Margin="20" Grid.Row="2" Grid.Column="0">
                     <TextBlock Text="Rename" FontSize="18" FontWeight="Black" FontFamily="Roboto" Margin="0 5"></TextBlock>
-                    <Button Name="RenameAllButton" Content="Rename All" Width="200" Height="40" Margin="0 5"></Button>
+                    <Button Name="RenameAllButton" Content="Rename All" Click="OnRenameAll" Width="200" Height="40" Margin="0 5"></Button>
                     <Button Name="RenameMapsButton" Content="Rename Maps" Width="200" Height="40" Margin="0 5"></Button>
                     <Button Name="RenameJmButton" Content="Rename JMs" Width="200" Height="40" Margin="0 5"></Button>
                 </StackPanel>
@@ -59,15 +59,40 @@
             <StackPanel Name="RightPanel" Width="320" Margin="0 20 20 20">
                 <StackPanel Name="MapsStackPanel" Orientation="Vertical" Margin="20 20 20 0" Grid.Row="0" Grid.Column="1">
                     <TextBlock Name="MapsTitle" Text="Skins and Maps" FontSize="18" FontWeight="Black" FontFamily="Roboto" Margin="0 10"></TextBlock>
-                    <ListBox Name="MapsListBox" Height="100" Margin="0 0 20 0"></ListBox>
+                    <ListBox Name="MapsListBox" SelectionMode="Multiple,Toggle" Items="{Binding MapFiles}" HorizontalAlignment="Left" Width="200" Height="100" Margin="0 0 0 0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border CornerRadius="4">
+                                    <TextBlock Text="{Binding}" FontSize="8"/>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Button Name="RemoveMapFilesButton" Content="Remove Selected" FontSize="8" Margin="0 10"></Button>
                 </StackPanel>
                 <StackPanel Name="JMsStackPanel" Orientation="Vertical" Margin="20 5" Grid.Row="0" Grid.Column="1">
                     <TextBlock Name="JMsTitle" Text="JMs" FontSize="18" FontWeight="Black" FontFamily="Roboto" Margin="0 10"></TextBlock>
-                    <ListBox Name="JMsListBox" Height="100" Margin="0 0 20 0"></ListBox>
+                    <ListBox Name="JMsListBox" SelectionMode="Multiple, Toggle" Items="{Binding JmFiles}" HorizontalAlignment="Left" Width="200" Height="100" Margin="0 0 20 0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border CornerRadius="4">
+                                    <TextBlock Text="{Binding}" FontSize="8"/>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </StackPanel>
                 <StackPanel Name="DynoStackPanel" Orientation="Vertical" Margin="20 5" Grid.Row="0" Grid.Column="1">
                     <TextBlock Name="DynoTitle" Text="Dyno" FontSize="18" FontWeight="Black" FontFamily="Roboto" Margin="0 10"></TextBlock>
-                    <ListBox Name="DynoListBox" Height="100" Margin="0 0 20 0"></ListBox>
+                    <ListBox Name="DynoListBox" SelectionMode="Single,Toggle" Items="{Binding Dynos}" HorizontalAlignment="Left" Width="200" Height="100" Margin="0 0 20 0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border CornerRadius="4">
+                                    <TextBlock Text="{Binding}" FontSize="8"/>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </StackPanel>
                 <StackPanel Name="SafStackPanel" Orientation="Vertical" Margin="20 40 20 20" Grid.Row="3" Grid.Column="0">
                     <TextBlock Text="Scram" FontSize="18" FontWeight="Black" FontFamily="Roboto" Margin="0 5"></TextBlock>

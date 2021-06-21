@@ -1,5 +1,3 @@
-using System;
-using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
@@ -33,7 +31,26 @@ namespace mxskintool.Views
                 // Get the context
                 var context = this.DataContext as MainWindowViewModel;
                 if (context != null)
+                {
                     context.AssetPath = assetPath;
+                    // Get skinning files from directory
+                    context.GetMapFilesInDirectory();
+                    context.GetJmFilesInDirectory();
+                }
+            }
+        }
+
+        private void OnRemoveSelectedMapFilesButtonWasPressed()
+        {
+            
+        }
+
+        private async void OnRenameAll(object sender, RoutedEventArgs e)
+        {
+            var context = this.DataContext as MainWindowViewModel;
+            if (context != null)
+            {
+                var result = await MessageBox.Show(this, "Test", "Test title", MessageBox.MessageBoxButtons.YesNoCancel);
             }
         }
     }
